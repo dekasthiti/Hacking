@@ -46,6 +46,7 @@ public:
 	{
 		size_t scoresCount = testScores.size();
 		unsigned int sum = 0;
+		char a;
 		for (unsigned int i = 0; i < scoresCount; i++)
 		{
 			sum = sum + testScores[i];
@@ -54,17 +55,19 @@ public:
 		unsigned int average = sum / scoresCount; //int?
 
 		if (average >= 90 && average <= 100)
-			return 'O';
+			a = 'O';
 		else if (average >= 80 && average < 90)
-			return 'E';
+			a = 'E';
 		else if (average >= 70 && average < 80)
-			return 'A';
+			a = 'A';
 		else if (average >= 55 && average < 70)
-			return 'P';
+			a = 'P';
 		else if (average >= 40 && average < 55)
-			return 'D';
+			a = 'D';
 		else if (average < 40)
-			return 'T';
+			a = 'T';
+
+		return a;
 	}
 };
 

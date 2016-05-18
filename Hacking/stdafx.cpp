@@ -13,6 +13,7 @@
 #include "Matrix.h"
 #include "BitManipulation.h"
 #include "Inheritance.h"
+#include "LinkedLists.h"
 
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
@@ -56,5 +57,6 @@ int main()
 
 	//17th May, 2016
 	//rotate90();
-	main_inheritance();
+	//main_inheritance();
+	reverseLinkedList();
 }

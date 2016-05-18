@@ -148,6 +148,7 @@
     <ClInclude Include="BitManipulation.h" />
     <ClInclude Include="DataTypesFormatting.h" />
     <ClInclude Include="Inheritance.h" />
+    <ClInclude Include="LinkedLists.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="OddEvenCharacters.h" />
     <ClInclude Include="Recursion.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="BitManipulation.cpp" />
     <ClCompile Include="DataTypesFormatting.cpp" />
     <ClCompile Include="Inheritance.cpp" />
+    <ClCompile Include="LinkedLists.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OddEvenCharacters.cpp" />
     <ClCompile Include="Recursion.cpp" />
