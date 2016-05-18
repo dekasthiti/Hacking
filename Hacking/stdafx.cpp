@@ -12,6 +12,7 @@
 #include "Recursion.h"
 #include "Matrix.h"
 #include "BitManipulation.h"
+#include "Inheritance.h"
 
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
@@ -54,6 +55,6 @@ int main()
 	//decimalToBinary();
 
 	//17th May, 2016
-	rotate90();
-
+	//rotate90();
+	main_inheritance();
 }
