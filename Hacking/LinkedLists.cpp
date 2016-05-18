@@ -21,7 +21,7 @@ void reverseLinkedList()
 	vector<int> dataList;
 	unsigned int tmp;
 
-	for (unsigned int i = 0; i < 5; i++)
+	for (unsigned int i = 0; i < N; i++)
 	{
 		cin >> tmp;
 		dataList.push_back(tmp);
@@ -45,22 +45,44 @@ void reverseLinkedList()
 
 	// Now print the list in reverse
 	LinkedListNode* tmpNode = head;
+	LinkedListNode* reversedHead = NULL;
 	cout << "Printing the linked list in reverse" << endl;
 	while (tmpNode != NULL)
 	{
 		cout << tmpNode->data << "->";
 		tmpNode = tmpNode->next;
 	}
-
+	cout << endl;
 	// However, we cheated here a bit. We assumed the list was not created and created one inserting the new 
 	// nodes in the front.
 	// To do this the right way, assume the list is given to you and you need to reverse it using pointer manipulation.
-	reverseLinkedListReal(head);
+	reversedHead = reverseLinkedListReal(head);
+	tmpNode = reversedHead;
+	cout << "Printing the linked list in reverse (reverse of reverse in this case)" << endl;
+	while (tmpNode != NULL)
+	{
+		cout << tmpNode->data << "->";
+		tmpNode = tmpNode->next;
+	}
 
 	return;
 }
 
 LinkedListNode* reverseLinkedListReal(LinkedListNode* head)
 {
+	LinkedListNode* curr, *prev, *next;
+
+	curr = head;
+	prev = NULL;
+	next = head;
+	while(curr != NULL)
+	{
+		next = curr->next; // save next node
+		curr->next = prev; // update current's link with prev
+		prev = curr;       // save curr to prev
+		curr = next;       // update current
+	}
+	head = prev;
+	return head;
 
 }
