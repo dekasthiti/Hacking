@@ -14,49 +14,53 @@
 #include "BitManipulation.h"
 #include "Inheritance.h"
 #include "LinkedLists.h"
+#include "StacksAndQueues.h"
 
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 int main()
 {
-	//UniqueValue();
-	//DataTypeFormat();
-	//AmIWeird();
-	//isUnique("zebra");
-	//isUnique("caterpillar");
-	//printOddEvenCharacters();
+	UniqueValue();
+	DataTypeFormat();
+	AmIWeird();
+	isUnique("zebra");
+	isUnique("caterpillar");
+	printOddEvenCharacters();
 
 	// 10th May 2016
 	// Time this
-	//isPermutationMap("caterpillar", "catcatcatar");
-	//isPermutationMap("caterpillar", "caterpillar");
+	isPermutationMap("caterpillar", "catcatcatar");
+	isPermutationMap("caterpillar", "caterpillar");
 
 	// Time this
-	//isPermutationHashTable("caterpillar", "catcatcatar");
-	//isPermutationHashTable("caterpillar", "caterpillar");
+	isPermutationHashTable("caterpillar", "catcatcatar");
+	isPermutationHashTable("caterpillar", "caterpillar");
 
-	//isPermutationHashSet("caterpillar", "catcatcatar");
-	//isPermutationHashSet("caterpillar", "caterpillar");
+	isPermutationHashSet("caterpillar", "catcatcatar");
+	isPermutationHashSet("caterpillar", "caterpillar");
 
-	//isPermutationBitSet("caterpillar", "catcatcatar");
-	//isPermutationBitSet("caterpillar", "caterpillar");
+	isPermutationBitSet("caterpillar", "catcatcatar");
+	isPermutationBitSet("caterpillar", "caterpillar");
 
-	//isPermutationBoolVector("caterpillar", "catcatcatar");
-	//isPermutationBoolVector("caterpillar", "caterpillar");
+	isPermutationBoolVector("caterpillar", "catcatcatar");
+	isPermutationBoolVector("caterpillar", "caterpillar");
 
 	// 15th May 2016: VMWare 
-	//subStringFrequency();
+	subStringFrequency();
 
 	// 16th May, 2016
-	//sortVector();
-	//factorial_main();
+	sortVector();
+	factorial_main();
 
-	//printMaxHourGlassSum();
+	printMaxHourGlassSum();
 
-	//decimalToBinary();
+	decimalToBinary();
 
 	//17th May, 2016
-	//rotate90();
-	//main_inheritance();
+	rotate90();
+	main_inheritance();
 	reverseLinkedList();
+
+	//23rd May, 2016
+	main_palindrome();
 }

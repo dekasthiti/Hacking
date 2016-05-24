@@ -274,6 +274,10 @@ bool isPermutationHashSet(char* input, char* test)
 	return result;
 }
 
+// Calculate the maximum frequency of a substring in a string
+// eg. abcde: 1
+// eg. ababcd : 2
+// eg. abcbcd : 2
 unsigned int subStringFrequency()
 {
 	unsigned int N;
@@ -406,3 +410,35 @@ unsigned int subStringFrequency()
 	free(inputString);
 	return maxSubtringFreq;
 }
+
+// Check if a string is a rotation of another string
+bool isRotatedString(string input, string test)
+{
+	bool isRotated = false;
+
+	// Early return: if strings are not of the same length.
+	size_t inputStrLen = strlen(input.data());
+	size_t testStrLen = strlen(test.data());
+
+	if (inputStrLen == testStrLen)
+	{
+		// ttlebo is a rotation of bottle
+		// and ttlebo is a substring of bottlebottle
+		string tmp = input + input; 
+		string checkSubStr;
+		size_t tmpStrLen = 2 * inputStrLen;
+		for (size_t i = 0; i < tmpStrLen; i++)
+		{
+			checkSubStr = tmp.substr(i, testStrLen);
+			if (checkSubStr == test)
+			{
+				isRotated = true;
+			}
+		}
+	}
+	
+	return isRotated;
+}
+// Time: O(2N)
+// Space: O(N^2) : checkSubStr for every i in tmp
+
