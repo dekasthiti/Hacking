@@ -12,6 +12,8 @@ struct LinkedListNode
 
 LinkedListNode* reverseLinkedListReal(LinkedListNode* head);
 LinkedListNode* reverseLinkedListRealRecursive(LinkedListNode* ptr);
+void partitionLinkedList(LinkedListNode* head, int x);
+
 
 void reverseLinkedList()
 {
@@ -81,6 +83,16 @@ void reverseLinkedList()
 		tmpNode = tmpNode->next;
 	}
 
+	// partition list
+	partitionLinkedList(reversedHead, 5);
+	//tmpNode = reversedHead;
+	//cout << "\n`Printing the linked list after partition" << endl;
+	//while (tmpNode != NULL)
+	//{
+	//	cout << tmpNode->data << "->";
+	//	tmpNode = tmpNode->next;
+	//}
+
 	return;
 }
 
@@ -131,3 +143,174 @@ LinkedListNode* reverseLinkedListRealRecursive(LinkedListNode* ptr)
 	prev->next = NULL;
 	return reversedHead;
 }
+
+
+/*Partition a linked list around x such that all nodes smaller than x are to the left of it
+ and all nodes bigger than x are to the right of it.
+ Current plan is to change the linked list in place*/
+
+/*void partitionLinkedList(LinkedListNode* head, int x)
+{
+	if (head == NULL || head->next == NULL)
+	{
+		return;
+	}
+	else
+	{
+		//Traverse the list till you find the node with x
+		LinkedListNode* saveHead = head;
+		unsigned int position = 0;
+		LinkedListNode* xNode = head;
+		bool found = false;
+		while (xNode->next != NULL)
+		{
+			if (xNode->data == x)
+			{
+				found = true;
+				break;
+			}
+			else
+			{
+				position++;
+				xNode = xNode->next;
+			}
+		}
+
+		if (found == true)
+		{
+			// Scan from head again. 
+			LinkedListNode* insertBigger = xNode;
+			LinkedListNode* insertBiggerNext = xNode->next;
+			LinkedListNode* prev = saveHead;
+			LinkedListNode *curr = saveHead;
+			LinkedListNode* next = curr->next;
+			while (curr != xNode)
+			{
+				if (curr->data > x)
+				{
+					// insert to the right of x
+					// Save the  current pointers
+					LinkedListNode *tmp = xNode->next;
+					curr->next = tmp;
+					xNode->next = curr;
+					xNode = tmp;
+
+
+					prev->next = next;
+					next = next->next;
+
+					// reset curr
+					curr = prev->next;
+				}
+				else
+				{
+					next = curr->next->next;
+					prev = curr;
+					curr = curr->next;
+				}
+			}
+			// Now curr is xNode
+			// Check if items are smaller than xNode
+			// You'd have to have saved prev of xNode
+			// and keep updating prev of xNode. This is where you will insert nodes < xNode
+			LinkedListNode* insertsmaller = prev;
+			while (curr != NULL && curr->next != NULL)
+			{
+				if (curr->data < x)
+				{
+					prev->next = curr->next;
+					curr->next = insertsmaller->next;
+					insertsmaller = curr;
+
+					curr = next;
+					next = curr->next;
+				}
+				else
+				{
+					next = curr->next->next;
+					prev = curr;
+					curr = curr->next;
+				}
+			}
+		}
+		else
+		{
+			//Account for the case where there is no node with x
+			cout << "\n Could not find x. Reached end of list. Quitting. " << endl;
+			return;
+
+		}
+
+	}
+}*/
+
+void insertAtListEnd(LinkedListNode** head, LinkedListNode** tail, int data)
+{
+	LinkedListNode* tmp = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+	tmp->data = data;
+	if (*head == NULL)
+	{
+		*head = tmp;
+		*tail = tmp;
+		tmp->next = NULL;
+	}
+	else
+	{
+		(*tail)->next = tmp;
+		tmp->next = NULL;
+		*tail = (*tail)->next;
+	}
+}
+
+void insertAtListFront(LinkedListNode** head, LinkedListNode** tail, int data)
+{
+	LinkedListNode* tmp = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+	tmp->data = data;
+	if (head == NULL)
+	{
+		*head = tmp;
+		*tail = tmp;
+		tmp->next = NULL;
+	}
+	else
+	{
+		tmp->next = *head;
+		*head = tmp;
+	}
+}
+
+void partitionLinkedList(LinkedListNode* head, int x)
+{
+	LinkedListNode* smallerListHead = NULL;
+	LinkedListNode* smallerListTail = NULL;
+	LinkedListNode* biggerListHead = NULL;
+	LinkedListNode* biggerListTail = NULL;
+
+	LinkedListNode* tmp = head;
+
+	while (tmp != NULL)
+	{
+		if (tmp->data < x)
+		{
+			insertAtListEnd(&smallerListHead, &smallerListTail, tmp->data);
+		}
+		else
+		{
+			insertAtListFront(&biggerListHead, &biggerListTail, tmp->data);
+		}
+
+		tmp = tmp->next;
+	}
+
+	// Merge the two lists
+	smallerListTail->next = biggerListHead;
+
+	head = smallerListHead;
+
+	cout << "\n`Printing the linked list after partition" << endl;
+	while (head != NULL)
+	{
+		cout << head->data << "->";
+		head = head->next;
+	}
+ }
