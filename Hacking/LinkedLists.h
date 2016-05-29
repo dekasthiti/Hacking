@@ -7,6 +7,6 @@
 //	int data;
 //}*Node;
 
-void reverseLinkedList();
+void main_LinkedList();
 //LinkedListNode* reverseLinkedListRealRecursive(LinkedListNode* ptr);
 

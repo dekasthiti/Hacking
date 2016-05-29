@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set> // for duplicate nodes
 #include "LinkedLists.h"
 
 using namespace std;
@@ -13,9 +14,10 @@ struct LinkedListNode
 LinkedListNode* reverseLinkedListReal(LinkedListNode* head);
 LinkedListNode* reverseLinkedListRealRecursive(LinkedListNode* ptr);
 void partitionLinkedList(LinkedListNode* head, int x);
+void removeDuplicateNodes(LinkedListNode* &head);
 
 
-void reverseLinkedList()
+void main_LinkedList()
 {
 	unsigned int N;
 
@@ -93,6 +95,8 @@ void reverseLinkedList()
 	//	tmpNode = tmpNode->next;
 	//}
 
+	removeDuplicateNodes(reversedHead);
+	
 	return;
 }
 
@@ -314,3 +318,36 @@ void partitionLinkedList(LinkedListNode* head, int x)
 		head = head->next;
 	}
  }
+
+void removeDuplicateNodes(LinkedListNode* &head)
+{
+	unordered_set<int> nodeData;
+	LinkedListNode* prev = head;
+	LinkedListNode* cur = head;
+	while (cur != NULL)
+	{
+		// Check if node is in unordered set
+		if (nodeData.find(cur->data) != nodeData.end())
+		{
+			// found duplicate node, delete node from list
+			LinkedListNode tmp = *head;
+			prev->next = cur->next;
+			tmp.next = NULL; // will this be deleted?
+		}
+		else
+		{
+			// Node not found in list, add to hash set
+			nodeData.insert(cur->data);
+			prev = cur;
+		}
+		cur = cur->next;
+	}
+
+	cur = head;
+	cout << "\nList without duplicate nodes: " << endl;
+	while (cur != NULL)
+	{
+		cout << cur->data << "->";
+		cur = cur->next;
+	}
+}
