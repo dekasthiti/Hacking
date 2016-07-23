@@ -49,6 +49,5 @@ Temporary Items
 #Build products
 /Debug/*
 /Release/*
-Hacking.sdf
-Hacking.sln
-.vs
+Hacking.vcxproj
+Hacking.vcxproj.filters

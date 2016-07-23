@@ -57,6 +57,12 @@
     <ClInclude Include="LinkedLists.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StacksAndQueues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -93,6 +99,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LinkedLists.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StacksAndQueues.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Trees.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

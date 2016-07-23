@@ -1,0 +1,5 @@
+1. Find if a string is a permutation of another
+2. Reverse a string
+3. Find the first occurrence of a character in a string, in a set. How can you parallelize this? How many cache misses?
+4. How will you find if all the characters are unique?
+5. Find the permutations of a string

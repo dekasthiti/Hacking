@@ -330,7 +330,7 @@ void removeDuplicateNodes(LinkedListNode* &head)
 		if (nodeData.find(cur->data) != nodeData.end())
 		{
 			// found duplicate node, delete node from list
-			LinkedListNode tmp = *head;
+			LinkedListNode tmp = *cur;
 			prev->next = cur->next;
 			tmp.next = NULL; // will this be deleted?
 		}
@@ -350,4 +350,47 @@ void removeDuplicateNodes(LinkedListNode* &head)
 		cout << cur->data << "->";
 		cur = cur->next;
 	}
+
+	/*HackRank constraint: Use vectors only
+	 
+	vector<int> nodeData;
+	LinkedListNode* prev = head;
+	LinkedListNode* cur = head;
+	bool duplicate = false;
+	while (cur != NULL)
+	{
+		// Check if node is in set
+		vector<int>::iterator itr = nodeData.begin();
+		duplicate = false;
+		while (itr != nodeData.end())
+		{
+			if (*itr == cur->data)
+			{
+				// found duplicate node, delete node from list
+				LinkedListNode tmp = *cur;
+				prev->next = cur->next;
+				tmp.next = NULL; // will this be deleted?
+				duplicate = true;
+			}
+
+			itr++;
+		}
+		if (duplicate == false)
+		{
+			// Node not found in list, add to hash set
+			nodeData.push_back(cur->data);
+			prev = cur;
+		}
+
+		cur = cur->next;
+	}
+	// End HackRank constraint
+	*/
+		cur = head;
+		cout << "\nList without duplicate nodes: " << endl;
+		while (cur != NULL)
+		{
+			cout << cur->data << "->";
+			cur = cur->next;
+		}
 }

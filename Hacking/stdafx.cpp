@@ -15,52 +15,67 @@
 #include "Inheritance.h"
 #include "LinkedLists.h"
 #include "StacksAndQueues.h"
+#include "Trees.h"
 
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 int main()
 {
-	UniqueValue();
-	DataTypeFormat();
-	AmIWeird();
-	isUnique("zebra");
-	isUnique("caterpillar");
-	printOddEvenCharacters();
+	//UniqueValue();
+	//DataTypeFormat();
+	//AmIWeird();
+	//isUnique("zebra");
+	//isUnique("caterpillar");
+	//printOddEvenCharacters();
 
-	// 10th May 2016
-	// Time this
-	isPermutationMap("caterpillar", "catcatcatar");
-	isPermutationMap("caterpillar", "caterpillar");
+	//// 10th May 2016
+	//// Time this
+	//isPermutationMap("caterpillar", "catcatcatar");
+	//isPermutationMap("caterpillar", "caterpillar");
 
-	// Time this
-	isPermutationHashTable("caterpillar", "catcatcatar");
-	isPermutationHashTable("caterpillar", "caterpillar");
+	//// Time this
+	//isPermutationHashTable("caterpillar", "catcatcatar");
+	//isPermutationHashTable("caterpillar", "caterpillar");
 
-	isPermutationHashSet("caterpillar", "catcatcatar");
-	isPermutationHashSet("caterpillar", "caterpillar");
+	//isPermutationHashSet("caterpillar", "catcatcatar");
+	//isPermutationHashSet("caterpillar", "caterpillar");
 
-	isPermutationBitSet("caterpillar", "catcatcatar");
-	isPermutationBitSet("caterpillar", "caterpillar");
+	//isPermutationBitSet("caterpillar", "catcatcatar");
+	//isPermutationBitSet("caterpillar", "caterpillar");
 
-	isPermutationBoolVector("caterpillar", "catcatcatar");
-	isPermutationBoolVector("caterpillar", "caterpillar");
+	//isPermutationBoolVector("caterpillar", "catcatcatar");
+	//isPermutationBoolVector("caterpillar", "caterpillar");
 
-	// 15th May 2016: VMWare 
-	subStringFrequency();
+	//// 15th May 2016: VMWare 
+	//subStringFrequency();
 
-	// 16th May, 2016
-	sortVector();
-	factorial_main();
+	//// 16th May, 2016
+	//sortVector();
+	//factorial_main();
 
-	printMaxHourGlassSum();
+	//printMaxHourGlassSum();
 
-	decimalToBinary();
+	//decimalToBinary();
 
-	//17th May, 2016
-	rotate90();
-	main_inheritance();
-	reverseLinkedList();
+	////17th May, 2016
+	//rotate90();
+	//main_inheritance();
+	//main_LinkedList();
 
 	//23rd May, 2016
-	main_palindrome();
+	//main_palindrome();
+
+	// 26th May, 2016
+	//main_Tree();
+
+	// TBD:
+	//main_Robber();
+
+	// 9th June, 2016
+	//setBit_main();
+	//getBit_main();
+	//unsetBit_main();
+	//modifyBit_main();
+	fitMinN_main();
+	
 }

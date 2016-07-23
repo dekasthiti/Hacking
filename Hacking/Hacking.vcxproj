@@ -152,9 +152,11 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="OddEvenCharacters.h" />
     <ClInclude Include="Recursion.h" />
+    <ClInclude Include="StacksAndQueues.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Strings.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Trees.h" />
     <ClInclude Include="UniqueValue.h" />
     <ClInclude Include="Vectors.h" />
     <ClInclude Include="Weird.h" />
@@ -167,7 +169,9 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OddEvenCharacters.cpp" />
     <ClCompile Include="Recursion.cpp" />
+    <ClCompile Include="StacksAndQueues.cpp" />
     <ClCompile Include="Strings.cpp" />
+    <ClCompile Include="Trees.cpp" />
     <ClCompile Include="UniqueValue.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Vectors.cpp" />

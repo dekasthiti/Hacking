@@ -103,3 +103,57 @@ void sortVector()
 	}
 	return;
 }
+
+class RobberSolution {
+public:
+	int rob(vector<int>& nums) {
+		vector<int>::iterator itr1 = nums.begin();
+		vector<int>::iterator itr2 = nums.begin() + 1;
+		int maxAmount1 = 0;
+		int maxAmount2 = 0;
+		while (itr1 != nums.end()) {
+			//if(itr1 != nums.end()){
+			maxAmount1 += *itr1;
+			if (itr1 + 1 == nums.end())
+			{
+				break;
+			}
+			itr1 = itr1 + 2;
+		}
+
+
+		while (itr2 != nums.end()) {
+			//if(itr2 != nums.end()) {
+			maxAmount2 += *itr2;
+			if (itr2 + 1 == nums.end())
+			{
+				break;
+			}
+			itr2 = itr2 + 2;
+		}
+		//}
+		return max(maxAmount1, maxAmount2);
+	}
+};
+
+void main_Robber()
+{
+	int N;
+	int cash;
+	vector<int> cashBag;
+	RobberSolution robSol;
+	cout << "Enter number of houses" << endl;
+	cin >> N;
+	
+	int i = 0;
+	cout << "Enter cash stacked in each house " << endl;
+	while (i < N)
+	{
+		//cin >> cash;
+		//cashBag.push_back(cash);
+		cashBag.push_back(i+1);
+		i++;
+	}
+	
+	cout << "Maximum amount stolen: " << robSol.rob(cashBag) ;
+}
