@@ -39,12 +39,21 @@ public:
 	}
 	string getData()
 	{
-		visitStatus = Status::Visited;
+		// Don't change the status implicitly
+		//visitStatus = Status::Visited;
 		return data;
 	}
 	unsigned getVisitStatus()
 	{
 		return visitStatus;
+	}
+
+	void setVisitStatus(Status s)
+	{
+		if (s >= Status::Unvisited && s <= Status::Visited)
+		{
+			visitStatus = s;
+		}
 	}
 
 private:
@@ -84,6 +93,47 @@ public:
 	set<Vertex*> getVertices()
 	{
 		return vertices;
+	}
+
+	void DFS(Vertex* start, Vertex* goal)
+	{
+		// If both start and goal are valid
+		if (start && goal)
+		{
+			Vertex* v = start;
+			if (v->getData() == goal->getData())
+			{
+				cout << goal->getData();
+				return;
+			}
+			else if (v->getVisitStatus() == Status::Unvisited)
+			{
+				v->setVisitStatus(Status::InProgress);
+
+				// Now visit all the neighbors
+				list<Edge*> vEdges = v->getEdges();
+				for (list<Edge*>::iterator lItr = vEdges.begin(); lItr != vEdges.end(); lItr++)
+				{
+					// print v
+					Edge* e = *lItr;
+					Vertex* neighbor = e->getToNode();
+					if (neighbor->getVisitStatus() == Status::Unvisited)
+					{
+						cout << v->getData() << "---->";
+						DFS(neighbor, goal);
+					}
+				}
+				v->setVisitStatus(Status::Visited);
+			}
+			else // Node was visited, return to the caller in the recursion stack
+			{
+				return;
+			}
+		}
+		else
+		{
+			return;
+		}
 	}
 private:
     set<Vertex*> vertices; 
@@ -139,6 +189,13 @@ int main()
 		}		
 	}
 	
+	cout << "=========DFS=========" << endl;
+	cout << "\nSearching from s to c" << endl;
+	g->DFS(s, c);
+
+	cout << "\nSearching from c to d" << endl;
+	g->DFS(c, d);
+
 
     return 0;
 }
