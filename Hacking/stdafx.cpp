@@ -16,7 +16,10 @@
 #include "LinkedLists.h"
 #include "StacksAndQueues.h"
 #include "Trees.h"
+#include "VirtualFunctions.h"
+#include "StaticConcepts.h"
 
+#include <iostream>
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 int main()
@@ -76,6 +79,15 @@ int main()
 	//getBit_main();
 	//unsetBit_main();
 	//modifyBit_main();
-	fitMinN_main();
+	//fitMinN_main();
 	
+
+   // 9th May, 2017
+	//main_VirtualFunction();
+
+	// 13th May, 2017
+	// main_StaticConcepts();
+
+	// 1st Sep, 2017
+	main_Strings();
 }

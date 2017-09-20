@@ -63,6 +63,12 @@
     <ClInclude Include="Trees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VirtualFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatingPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -105,6 +111,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Trees.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatingPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticConcepts.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticConcepts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -442,3 +442,101 @@ bool isRotatedString(string input, string test)
 // Time: O(2N)
 // Space: O(N^2) : checkSubStr for every i in tmp
 
+void reverse(char* inputStr, char** revStr)
+{
+	// The following code will never work as long as we allocating memory on the heap inside the callee, because the pointers are invalid when 
+	// the call returns
+
+	// Implementation 1: Iterate from the end of the input string to the beginning
+	// Time: O(n)
+	// Space: O(2n)
+	int len = strlen(inputStr);
+	/*revStr = (char*)malloc(len + 1);*/ // Allocating memory in the callee will not work. Adding a reference to this pointer should work?
+
+	if (revStr)
+	{
+		for (int i = len; i > 0; i--)
+		{
+			*(*revStr + ( i - 1)) = inputStr[len - i];
+		}
+		(*revStr)[len] = '\0';
+	}
+
+	// Implementation 1: In place?
+}
+
+int reverseEntireString(string& test, int startpos, int endpos)
+{
+	char tmp;
+	while (startpos < endpos)
+	{
+		tmp = test[endpos-1];
+		test[endpos-1] = test[startpos];
+		test[startpos] = tmp;
+		startpos++;
+		endpos--;
+	}
+	return 0;
+}
+// Input: "I am a test stringo!"
+// Output: "stringo! test a am I"
+int reverseString( string& input)
+{
+	if (!input.empty())
+	{
+		// 1. Reverse the string, character by character
+		reverseEntireString(input, 0, input.length());
+
+		// 2. Reverse each word
+		int stringStart = 0;
+		int stringEnd = input.length();
+		int wordStart = 0;
+		int wordlen = 0;
+		int wordEnd = 0;
+
+		char tmp;
+		while (stringStart < stringEnd)
+		{
+			wordlen = 0; //for every new word
+			wordStart = stringStart;
+
+			while ((wordStart + wordlen < stringEnd ) && input[wordStart + wordlen] != ' ')
+			{
+				wordlen++;
+			}
+			wordEnd = wordStart + wordlen;
+
+			while (wordStart < wordEnd)
+			{
+				// swap letters of the word
+				tmp = input[wordEnd -1] ;
+				input[wordEnd - 1] = input[wordStart];
+				input[wordStart] = tmp;
+				wordStart++;
+				wordEnd--;
+			}
+			stringStart += wordlen ;
+			stringStart++; //skipping the space
+		}
+
+	}
+	return 0;
+
+}
+
+int main_Strings()
+{
+	char* input = "hello";
+	char* output = (char*)malloc(strlen(input) + 1);
+	reverse(input, &output);
+	printf("Reverse of %s is %s", input, output);
+
+	if (output)
+		free(output);
+
+
+	std::string str = "I am a test stringo!";
+	reverseString(str);
+	cout << "Reversed string is " << str;
+	return 0;
+}
