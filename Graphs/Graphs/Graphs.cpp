@@ -5,6 +5,7 @@
 #include <string> // for: string
 #include <list>   // for: list
 #include <set>    // for: set
+#include <queue>  // for: queue
 #include <iostream>
 
 using namespace std;
@@ -135,6 +136,46 @@ public:
 			return;
 		}
 	}
+
+	void BFT(Vertex* start)
+	{
+		queue<Vertex*> BFTQueue;
+
+		// Traverse if the start node is valid and has not been visited yet
+		if (start && start->getVisitStatus() == Status::Unvisited)
+		{
+			// 1. Insert node in a queue
+			BFTQueue.push(start);
+
+			// 2. Dequeue. Process node. Insert unvisited nodes in its adjacency list
+			while (!BFTQueue.empty())
+			{
+				Vertex* v = BFTQueue.pop();
+				list<Edge*> edges = v->getEdges();
+				for (list<Edge*>::iterator lItr = edges.begin(); lItr != edges.end(); lItr++)
+				{
+					v->setVisitStatus(Status::Visited);
+					//Process v
+					cout << " " << v->getData();
+					Edge* e = lItr;
+					Vertex* neighbor = e->getToNode();
+					if (neighbor->getVisitStatus() != Status::Visited)
+					{
+						BFTQueue.push(neighbor);
+					}
+				}
+			}
+			// 3. Repeat till there are no nodes in the queue.
+			
+		}
+		else
+		{
+			// Nothing to traverse
+			return;
+		}
+
+
+	}
 private:
     set<Vertex*> vertices; 
 };
@@ -196,6 +237,9 @@ int main()
 	cout << "\nSearching from c to d" << endl;
 	g->DFS(c, d);
 
+	// Modify this to traverse the graph without a start node
+	cout << "=========BFT=========" << endl;
+	g->BFT(s);
 
     return 0;
 }

@@ -69,6 +69,15 @@
     <ClInclude Include="FloatingPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SmartPointers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sorting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -123,6 +132,12 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="StaticConcepts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sorting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

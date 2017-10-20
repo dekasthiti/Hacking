@@ -151,8 +151,11 @@
     <ClInclude Include="Inheritance.h" />
     <ClInclude Include="LinkedLists.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="OddEvenCharacters.h" />
     <ClInclude Include="Recursion.h" />
+    <ClInclude Include="SmartPointers.h" />
+    <ClInclude Include="Sorting.h" />
     <ClInclude Include="StacksAndQueues.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Strings.h" />
@@ -170,8 +173,10 @@
     <ClCompile Include="Inheritance.cpp" />
     <ClCompile Include="LinkedLists.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="OddEvenCharacters.cpp" />
     <ClCompile Include="Recursion.cpp" />
+    <ClCompile Include="Sorting.cpp" />
     <ClCompile Include="StacksAndQueues.cpp" />
     <ClCompile Include="StaticConcepts.cpp" />
     <ClCompile Include="StaticConcepts.h" />

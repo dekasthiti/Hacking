@@ -6,6 +6,7 @@
 #include <string>
 #include <bitset>
 #include <string>
+#include <fstream>  // For file streaming
 
 using namespace std;
 
@@ -524,8 +525,34 @@ int reverseString( string& input)
 
 }
 
+void printKLastLines(string filePath, unsigned int k)
+{
+	ifstream f(filePath);
+	const unsigned int K = 10; // overriding for now
+	string circBuffer[10];  // how will you declare a circBuffer when K is runtime constant?
+	unsigned int lineCount = 0;
+	
+	// Fill the circular buffer as you read the file
+	while (f.good())
+	{
+		getline(f, circBuffer[lineCount % K]);  // This will read a line and advance f
+		lineCount++;  // This will track the total lines in the file
+	}
+
+	// Must print the lines in order in which it was read in, therefore, get the Kth line index
+	unsigned int start = K < lineCount ? lineCount % K : 0;
+	unsigned int end = fmin(K, lineCount);   // No intmin in math.h?
+
+	for (int i = 0; i < end; i++)
+	{
+		cout << circBuffer[(start + i) % K] << endl;
+	}
+	
+}
+
 int main_Strings()
 {
+	// Dumb string reverse
 	char* input = "hello";
 	char* output = (char*)malloc(strlen(input) + 1);
 	reverse(input, &output);
@@ -534,9 +561,15 @@ int main_Strings()
 	if (output)
 		free(output);
 
-
+	// Smart string reverse
 	std::string str = "I am a test stringo!";
 	reverseString(str);
 	cout << "Reversed string is " << str;
+
+	// Print K last lines of a file
+	string filePath = "C:\\Users\\sdeka\\Documents\\Visual\ Studio\ 2015\\Projects\\Hacking\\Hacking\\LittleBlueTruck.txt";
+	unsigned int K = 10;
+	printKLastLines(filePath, K);
+
 	return 0;
 }

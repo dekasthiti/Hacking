@@ -18,6 +18,8 @@
 #include "Trees.h"
 #include "VirtualFunctions.h"
 #include "StaticConcepts.h"
+#include "Memory.h"
+#include "Sorting.h"
 
 #include <iostream>
 // TODO: reference any additional headers you need in STDAFX.H
@@ -89,5 +91,11 @@ int main()
 	// main_StaticConcepts();
 
 	// 1st Sep, 2017
-	main_Strings();
+	// main_Strings();
+
+	// 26th Sep, 2017
+	//main_Memory();
+
+	// 20th Oct, 2017
+	main_Sort();
 }
