@@ -5,8 +5,9 @@
 using namespace std;
 void merge(int input[], size_t left, size_t mid, size_t right);
 void mergeSortRecursive(int input[], size_t left, size_t right);
+void bubbleSort(int input[]);
 
-void mergeSort(int input[])
+void mergeSortRecursive(int input[])
 {
 	size_t inputLen = sizeof(input) / sizeof(input[0]);
 	size_t left = 0;
@@ -80,13 +81,37 @@ void mergeSortRecursive(int input[], size_t left, size_t right)
 	}
 }
 
+void bubbleSort(int input[])
+{
+	// If input is not empty
+	size_t count = sizeof(input) / sizeof(input[0]);
+	if (count > 1)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = 1; j <= count; j++)
+			{
+				if (input[i] > input[j])
+				{
+					int temp = input[i];
+					input[i] = input[j];
+					input[j] = temp;
+				}
+			}
+		}
+	}
+}
+
 int main_Sort() 
 {
 	int arr[] = { 12, 11, 13, 5, 6, 7 };
 	// TBD: Print the  given array:
 	cout << "Given array  is " << endl;
 
-	mergeSort(arr);
+
+	//mergeSort(arr);
+
+	bubbleSort(arr);
 
 	// TBD: Print the sorted array
 	cout << "Sorted array is" << endl;
