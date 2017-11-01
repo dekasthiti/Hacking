@@ -22,6 +22,7 @@
 #include "Sorting.h"
 
 #include <iostream>
+using namespace std;
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 int main()
@@ -97,5 +98,33 @@ int main()
 	//main_Memory();
 
 	// 20th Oct, 2017
-	main_Sort();
+	//main_Sort();
+
+
+	// How much data can I allocate on stack
+	//int a[1024 * 1024 * 256 ];  // 2^31 - 1 elements = 2^31 - 1 * sizeof(int) bytes: when compiled as 32 bit app or 64 bit app
+	// Afte allocating 1GB ints, if I try to allocate more static data, will I be able to ?
+
+	//int b[1024 * 1024 ];
+
+	// if b is declared as an array of 1024 * 1024 * 256 ints as an array before it, along with a, we get a 'automatic allocation cannot exceed 2GB
+	// The other error is: array allocation cannot exceed 0x7fffffff. Individual array allocation cannot exceed 2^31 - 1. This is whether 
+	// binary is compiled as 32 bit app or 64 bit app. Looks like stack space is bounded by 2G limit. 2G limit is checked against at 
+	// compile time and okayed, but get stack overflow at runtime
+	long long c = 0;
+
+	//for (int i = 0; i < 1024 * 1024 ; i++)
+	//{
+	//	a[i] = i;
+	//	//b[i] = i;
+	//	c += a[i]; // *b[i];
+	//}
+	size_t largeSize =(size_t) 1024 * 1024 * 1024 * 4 + 1;
+	int* d = (int*)malloc(largeSize);
+	// with this size = 1024 * 1024 * 1024 * 64, I get a warning C4307 : '*' integral constant overflow and a null pointer at runtime
+
+	if (d != nullptr)
+	{
+		cout << "Allocated " << largeSize << " on heap" << endl;
+	}
 }
