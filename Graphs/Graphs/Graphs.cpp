@@ -6,6 +6,8 @@
 #include <list>   // for: list
 #include <set>    // for: set
 #include <queue>  // for: queue
+#include <map>
+#include <stack>
 #include <iostream>
 
 using namespace std;
@@ -19,6 +21,30 @@ enum Status
 	Unvisited = 0, 
 	InProgress = 1, 
 	Visited = 2 
+};
+
+// Edge is referenced in Vertex while creating the adjacency list,
+// and has to be defined before using it in Vertex to avoid C2027: use of undefined type 'Edge'
+// Note that there is use of vertex* as a parameter and return type, and for that, definition is not required, just declaration 
+// will suffice
+class Edge
+{
+public:
+	Edge(Vertex* v, int w) :to(v), weight(w)
+	{
+	}
+	int getWeight()
+	{
+		return weight;
+	}
+	Vertex* getToNode()
+	{
+		return to;
+	}
+
+private:
+	Vertex* to;
+	int weight;
 };
 
 class Vertex 
@@ -56,32 +82,27 @@ public:
 			visitStatus = s;
 		}
 	}
+	list<Vertex*> getAdjList()
+	{
+		for (list<Edge*>::iterator lItr = edges.begin(); lItr != edges.end(); lItr++)
+		{
+			Edge* e = static_cast<Edge*>(*lItr);
+			Vertex* v = e->getToNode();
+			adjList.push_back(v);
+		}
+		return adjList;
+	}
+
 
 private:
 	string data;
 	list<Edge*> edges;
 	Status visitStatus;
+	list<Vertex*> adjList;
+
 };
 
-class Edge 
-{
-public: 
-	Edge(Vertex* v, int w):to(v), weight(w)
-	{
-	}
-	int getWeight()
-	{
-		return weight;
-	}
-	Vertex* getToNode()
-	{
-		return to;
-	}
 
-private:
-	Vertex* to; 
-	int weight;
-};
 
 class Graph 
 { 
@@ -150,20 +171,21 @@ public:
 			// 2. Dequeue. Process node. Insert unvisited nodes in its adjacency list
 			while (!BFTQueue.empty())
 			{
-				Vertex* v = BFTQueue.pop();
+				Vertex* v = BFTQueue.front();
 				list<Edge*> edges = v->getEdges();
 				for (list<Edge*>::iterator lItr = edges.begin(); lItr != edges.end(); lItr++)
 				{
 					v->setVisitStatus(Status::Visited);
 					//Process v
 					cout << " " << v->getData();
-					Edge* e = lItr;
+					Edge* e = *lItr;
 					Vertex* neighbor = e->getToNode();
 					if (neighbor->getVisitStatus() != Status::Visited)
 					{
 						BFTQueue.push(neighbor);
 					}
 				}
+				BFTQueue.pop();
 			}
 			// 3. Repeat till there are no nodes in the queue.
 			
@@ -173,11 +195,68 @@ public:
 			// Nothing to traverse
 			return;
 		}
+	}
 
+	void DFT(Vertex* u)
+	{
+		if (u)
+		{
+			cout << u->getData() << "-------->";
+			u->setVisitStatus(Status::Visited);   // Mark when you first see, before calling DFT on its adjacent vertices
+			list<Vertex*> adjList = u->getAdjList();
+			for (list<Vertex*>::iterator lItr = adjList.begin(); lItr != adjList.end(); lItr++)
+			{
+				Vertex* v = *lItr;
 
+				if (v->getVisitStatus() != Status::Visited)
+				{
+					pathTo[v] = u;
+					DFT(v);
+				}
+			}
+		}
+		else
+		{
+			return;
+		}
+	}
+
+	void DFT_iterative(Vertex* u)
+	{
+		stack<Vertex*> S;
+		if (u)
+		{
+			u->setVisitStatus(Status::Visited); // Mark before pushing to stack
+			S.push(u);
+
+			while (!S.empty())
+			{
+				u = static_cast<Vertex*>(S.top());
+				S.pop();
+				cout << u->getData() << "-------->";
+				//u->setVisitStatus(Status::Visited);  // Marking after popping from stack makes us revisit the same vertex many more times while iterating through adj list
+
+				list<Vertex*> adjList = u->getAdjList();
+
+				for (list<Vertex*>::iterator lItr = adjList.begin(); lItr != adjList.end(); lItr++)
+				{
+					Vertex* v = *lItr;
+					if (v->getVisitStatus() != Status::Visited)
+					{
+						pathTo[v] = u;
+						v->setVisitStatus(Status::Visited); // Mark before pushing to stack
+						S.push(v);
+					}
+				}
+
+			}
+
+		}
 	}
 private:
     set<Vertex*> vertices; 
+	map<Vertex*, Vertex*> pathTo;
+	map<Vertex*, vector<Vertex*>> adjList;
 };
 
 
@@ -238,8 +317,38 @@ int main()
 	g->DFS(c, d);
 
 	// Modify this to traverse the graph without a start node
-	cout << "=========BFT=========" << endl;
+	// Reset the visit status of all the nodes. This should change. Client shouldnt' have to do this?
+	s->setVisitStatus(Status::Unvisited);
+	a->setVisitStatus(Status::Unvisited);
+	b->setVisitStatus(Status::Unvisited);
+	c->setVisitStatus(Status::Unvisited);
+	d->setVisitStatus(Status::Unvisited);
+
+	cout << "\n\n=========BFT=========" << endl;
 	g->BFT(s);
+
+	// Modify this to traverse the graph without a start node
+	// Reset the visit status of all the nodes. This should change. Client shouldnt' have to do this?
+	s->setVisitStatus(Status::Unvisited);
+	a->setVisitStatus(Status::Unvisited);
+	b->setVisitStatus(Status::Unvisited);
+	c->setVisitStatus(Status::Unvisited);
+	d->setVisitStatus(Status::Unvisited);
+
+	cout << "\n\n=========DFT=========" << endl;
+	g->DFT(s);
+
+	// Modify this to traverse the graph without a start node
+	// Reset the visit status of all the nodes. This should change. Client shouldnt' have to do this?
+	s->setVisitStatus(Status::Unvisited);
+	a->setVisitStatus(Status::Unvisited);
+	b->setVisitStatus(Status::Unvisited);
+	c->setVisitStatus(Status::Unvisited);
+	d->setVisitStatus(Status::Unvisited);
+
+	cout << "\n\n==========DFT Iterative========" << endl;
+	g->DFT_iterative(s);
+
 
     return 0;
 }
