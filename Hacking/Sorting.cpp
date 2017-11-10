@@ -28,7 +28,6 @@ void merge(int input[], size_t left, size_t mid, size_t right)
 	size_t n1 = mid - left + 1; // +1 because ?
 	size_t n2 = right - mid;
 
-	// Can I do this? Isn't this dynamic?
 	int *L = (int*)malloc(sizeof(int) * n1);
 	int *R = (int*)malloc(sizeof(int) * n2);
 
@@ -73,13 +72,26 @@ void merge(int input[], size_t left, size_t mid, size_t right)
 		j++;
 		k++;
 	}
+
+	//delete L and R
+	if (L)
+	{
+		delete L;
+		L = nullptr;
+	}
+
+	if (R)
+	{
+		delete R;
+		R = nullptr;
+	}
 }
 
 void mergeSortRecursive(int input[], size_t left, size_t right)
 {
 	if (left < right)
 	{
-		size_t mid = (left + right - 1) / 2; // Why -1?
+		size_t mid = left + (right - left) / 2; // To avoid overflow
 
 		mergeSortRecursive(input, left, mid);
 		mergeSortRecursive(input, mid, right);
@@ -198,8 +210,12 @@ void quickSortRecursive(int input[], int start, int end)
 {
 	int pivotElement = input[end];
 	int pIndex = partition(input, start, end, pivotElement);
-	quickSortRecursive(input, start, pIndex);
-	quickSortRecursive(input, pIndex + 1, end);
+	if (start < end)
+	{
+		quickSortRecursive(input, start, pIndex);
+		quickSortRecursive(input, pIndex + 1, end);
+	}
+
 }
 
 void quickSort(int input[])
@@ -221,6 +237,10 @@ int main_Sort()
 	bubbleSort(arr);
 
 	insertionSort(arr);
+
+	selectionSort(arr);
+
+	quickSort(arr);
 
 	// TBD: Print the sorted array
 	cout << "Sorted array is" << endl;

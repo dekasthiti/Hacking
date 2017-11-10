@@ -45,7 +45,7 @@ public:
 private:
 	int Tiles[3][3]; // To Do: Make this a generic nxn board
 	int status;
-	static int playerCount;
+	int playerCount;
 	Person players[2];
 };
 
@@ -140,5 +140,5 @@ int main_TicTacToe()
 	}
 
 
-	
+	return 0;
 }

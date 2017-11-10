@@ -50,9 +50,24 @@ namespace staticConcepts
 		// global variables (accessible within all functions in the translation unit, persists across function calls)
 	// 5. static function variables
 	// 6. Implementing singleton class using static class?
+
+	// extern struct counter;
+	//warning C4091 : 'extern ' : ignored on left of 'counter' when no variable is declared
+	// 
+	// warning goes away when I declare an instance of the struct
+    struct counter myCounter;
+	// This means, the global struct counter will be instantiated and initialized here. Any other file that wants to 
+	// use this value will have to declare it as an extern, otherwise, linker will identify it as duplicate definition
+
+	// If myCounter were declared as a static instance of struct counter, it would not be visible outside of this module
+	//static struct counter myCounter;
+
 };
 
+// Static member variable will have to be initialized. 
 int staticConcepts::StaticDataAndMethod::color = 0x000000FF;
+
+
 using namespace staticConcepts;
 using namespace std;
 int main_StaticConcepts()
@@ -74,5 +89,20 @@ int main_StaticConcepts()
 	//cout << "New color is: " << sdm->getColor() << endl; // Need to read color variable through a non-static method. But this is wrong since 
 	// color is a static variable, should be accessed via a static method only, which can be accessed by the class.
 
+	// Modify global variable myCounter and print the output
+	myCounter.a = 1;
+	myCounter.b = 'b';
+	myCounter.c = 1.0f;
+
+	cout << "myCounter values are: myCounter.a = " << myCounter.a << ", myCounter.b = " << myCounter.b << ", myCounter.c = " << myCounter.c;
+
+	//cout << "myStaticCounter values are: myStaticCounter.a = " << myStaticCounter.a << ", myStaticCounter.b = " << myStaticCounter.b << ", myStaticCounter.c = " << myStaticCounter.c;
+	
+
+	// To Do: declare a class, check what happens when:
+	// class has a static primitive member variable. Is it initialized to zero by default?
+	// class has a static class member variable. What is this initialized to by default?
+		// If the class member variable is qualified with static, does it have to be qualified with static when it is declared as a member variable?
+			// What happens if it is not declared as static when included as a member variable?
 	return 0;
 }

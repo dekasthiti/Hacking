@@ -1,3 +1,3 @@
 #pragma once
-int* mergeSort(int[]);
+void mergeSort(int[]);
 int main_Sort();

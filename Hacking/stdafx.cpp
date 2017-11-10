@@ -89,7 +89,8 @@ int main()
 	//main_VirtualFunction();
 
 	// 13th May, 2017
-	// main_StaticConcepts();
+	 main_StaticConcepts();
+	 main_StaticConcepts2();
 
 	// 1st Sep, 2017
 	// main_Strings();

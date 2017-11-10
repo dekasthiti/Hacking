@@ -160,6 +160,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Strings.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TicTacToe.h" />
     <ClInclude Include="Trees.h" />
     <ClInclude Include="UniqueValue.h" />
     <ClInclude Include="Vectors.h" />
@@ -179,8 +180,12 @@
     <ClCompile Include="Sorting.cpp" />
     <ClCompile Include="StacksAndQueues.cpp" />
     <ClCompile Include="StaticConcepts.cpp" />
-    <ClCompile Include="StaticConcepts.h" />
+    <ClInclude Include="StaticConcepts.h" />
+    <ClCompile Include="StaticConcepts2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Strings.cpp" />
+    <ClCompile Include="TicTacToe.cpp" />
     <ClCompile Include="Trees.cpp" />
     <ClCompile Include="UniqueValue.cpp" />
     <ClCompile Include="stdafx.cpp" />
